@@ -1,20 +1,427 @@
-/* Здесь вы напишете основную часть стилей страницы.
+/* -------------ОБЩИЕ СТИЛИ----------- */
+.page, .header, 
+.header__logo, .theme-menu__list,
+.main, .content,
+.text-content, .container-button,
+.footer, .heart-button,
+.button, .dialog__container,
+.dialog__warning {
+  display: flex;
+}
 
-Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
-✦ theme-dark — класс тёмной темы
-✦ theme-light — класс светлой темы
-✦ like-icon — для svg-иконки анимированного сердца
-✦ card__like-button — для кнопки Like рядом с иконкой
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
-✦ button__text — для обозначения текстового элемента внутри кнопки
+.page, .header,
+.header__logo, .theme-menu__list,
+.main, .content,
+.text-content, .dialog__container {
+  flex-direction: column;
+}
 
-Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
+.button:focus-visible, .header__title:focus,
+.theme-menu__button:focus-within, .heart-button:focus {
+  outline: none;
+}
 
-*/
+.header, .post,
+.post__title, .post__cover,
+.content, .heart-button::before,
+.button, .dialog {
+  border: 2px solid var(--themes-main-color);
+}
 
+.post__cover, .theme-menu__button,
+.heart-button, .button {
+  position: relative;
+}
+
+.theme-menu__button, .watermark,
+.button__text, .dialog__warning {
+  font-size: 14px;
+}
+
+
+/* -----PAGE----- */
 .page {
-  min-inline-size: 320px;
-  min-block-size: 100dvb;
+  gap: 52px;
+  width: calc(100vw * (700 / 1440));
+  min-width: 430px;
+  color: var(--themes-main-color);
+  font-family: var(--font-main);
+  background: var(--background);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  font-variation-settings: "wght" var(--themes-font-weight-content);
+}
+
+/* ------------HEADER------------------- */
+.header {
+  align-items: center;
+  gap: 22px;
+  margin-top: 100px;
+  font-family: var(--font-accent);
+  background-color: var(--themes-backgroud-color);
+}
+
+.header__logo {
+  align-items: center;
+  gap: 20px;
+  margin-top: 120px;
+}
+
+.header__title {
+  font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
+  text-transform: uppercase;
+}
+
+.header__description {
+  font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+  text-transform: uppercase;
+}
+
+.theme-menu__list {
+  gap: 12px;
+  margin-left: 21px;
+  margin-bottom: 25px;
+}
+
+.theme-menu__button {
+  border: none;
+  padding: 0;
+  text-transform: uppercase;
+  background-color: transparent;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.theme-menu__button:hover {
+  opacity: 0.6;
+}
+
+.theme-menu__button::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  display: block;
+  width: 0%;
+  height: 2px;
+  background-color: var(--themes-main-color);
+  transition: width 0.5s ease-in-out;
+}
+
+.theme-menu__button:focus-within {
+  opacity: 0.6;
+}
+
+.theme-menu__button:focus-within::after {
+  width: 100%;
+}
+
+.theme-menu__button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.theme-menu__button:disabled::before {
+  content: "▶";
+  position: absolute;
+  top: 0;
+  left: -20px;
+  animation: choose 0.5s infinite ease-in-out alternate;
+}
+
+/* ------------------ОСНОВНОЙ КОНТЕЙНЕР------------------------- */
+.main {
+  gap: 50px;
+  margin-top: 48px;
+}
+
+/* --------------------------БЛОК ПОСТА------------------------- */
+.post {
+  background-color: var(--themes-backgroud-color);
+}
+
+.post__title {
+  padding: 3px 10px;
+  font-size: 18px;
+  font-variation-settings: "wght" var(--themes-font-weight-title);
+}
+
+.post__title:first-child {
+  max-block-size: 52px;
+  block-size: 100%;
+}
+
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  aspect-ratio: 1 / 1;
+}
+
+.watermark {
+  position: absolute;
+  top: 25px;
+  right: 13px;
+  opacity: 0.5;
+  color: var(--themes-main-color);
+  font-family: var(--font-accent);
+  font-weight: 400;
+  text-shadow: 0 0 1px var(--themes-backgroud-color);
+}
+
+
+.content {
+  gap: 25px;
+  padding: 25px;
+  padding-bottom: 22px;
+  font-size: 18px;
+  line-height: 20.9px;
+  font-variation-settings: "wght" var(--themes-font-weight-content);
+}
+
+.text-content {
+  gap: 27px;
+}
+
+.container-button {
+  justify-content: end;
+  gap: 6px;
+}
+
+/* footer */
+.footer {
+  justify-content: center;
+}
+
+/* utils */
+
+.heart-button {
+  align-items: end;
+  min-height: 38px;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.heart-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  outline-offset: -2px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.heart-button:focus-within::before {
+  opacity: 100;
+  z-index: 0;
+}
+
+.card__like-button {
+  width: 130px;
+  min-height: 38px;
+  padding: 9px 17px;
+}
+
+/*----------------СТИЛИ ДЛЯ КНОПОК------------------*/
+
+.save_container {
+  background: var(--themes-backgroud-color);
+}
+
+.button {
+  justify-content: center;
+  align-items: center;
+  background: var(--themes-backgroud-color);
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.save_button {
+  gap: 8px;
+  min-height: 55px;
+  padding: 15px 20px;
+}
+
+.button:focus-visible {
+  box-shadow: 2px 2px var(--themes-main-color);
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: var(--themes-main-color);
+  transition: width 0.3s ease-in-out;
+}
+
+.button:hover::before {
+  width: 100%;
+}
+
+.button__text {
+  font-family: var(--font-accent);
+  font-weight: 400;
+  line-height: 90%;
+  color: var(--themes-button-text-color);
+}
+
+.button .button__text {
+  transition: color 0.5s ease-in-out;
+}
+
+.button:hover .button__text {
+  color: var(--themes-backgroud-color);
+}
+
+.button svg {
+  transition: color 0.5s ease-in-out;
+}
+
+.button:hover svg {
+  color: var(--themes-backgroud-color);
+}
+
+/* -------------ДИАЛОГОВОЕ ОКНО---------------- */
+dialog::backdrop {
+  opacity: 0.75;
+  background: var(--themes-main-color, #000);
+}
+
+.dialog {
+  width: calc(100vw * (352 / 1440));
+  min-width: 341px;
+  padding: 30px;
+  background: var(--themes-backgroud-color);
+}
+
+.dialog__container {
+  gap: 30px;
+  color: var(--themes-main-color);
+}
+
+.dialog__warning {
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  font-family: var(--font-accent);
+  line-height: 150%;
+  text-transform: uppercase;
+}
+
+.dialog__button {
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 38px;
+  padding: 9px 17px;
+}
+
+/* -----------ФИЛЬТРЫ ДЛЯ ИЗОБРАЖЕНИЙ----------- */
+
+.brightness {
+  filter: brightness(130%);
+}
+
+.grayscale {
+  filter: grayscale(0.8);
+}
+
+.combinate-acid_pink_shades {
+  filter: brightness(1.4) contrast(1) saturate(3) hue-rotate(360deg);
+}
+
+.combinate-brow-pink_dark_shades {
+  filter: brightness(0.8) contrast(1.3) hue-rotate(34deg) saturate(1.4) sepia(0.2);
+}
+
+.combinate-invert {
+  filter: contrast(0.6) hue-rotate(20deg) saturate(1.4) sepia(0.2) invert(1);
+}
+
+.combinate-sepia {
+  filter: saturate(0.6) sepia(0.7);
+}
+
+.blur {
+  filter: blur(1rem);
+}
+
+.combinate-grayish-purple_shade {
+  filter: brightness(0.9) contrast(0.4) hue-rotate(70deg) saturate(3) sepia(0.4) blur(0.1rem);
+}
+
+/* ----------ЗАПРОСЫ------------ */
+
+@supports (mix-blend-mode: difference) {
+  .button .button__text {
+    transition: none;
+  }
+
+  .button:hover svg {
+    transition: none;
+    mix-blend-mode: difference;
+    filter: invert(1);
+  }
+
+  .button:hover .button__text {
+    color: var(--themes-button-text-color);
+  }
+
+  .button:hover svg {
+    color: var(--themes-button-text-color);
+  }
+
+  .button__text {
+    mix-blend-mode: difference;
+  }
+}
+
+@supports (
+  (
+      (text-stroke: 1px var(--themes-backgroud-color)) or
+        (-webkit-text-stroke: 1px var(--themes-backgroud-color))
+    )
+    and (mix-blend-mode: hard-light)
+) {
+  .watermark {
+    text-shadow: none;
+    -webkit-text-stroke: 1px var(--themes-backgroud-color);
+    text-stroke: var(--themes-backgroud-color);
+    mix-blend-mode: hard-light;
+  }
+}
+
+@media (width <= 450px) {
+  .page {
+    width: 100%;
+    min-width: 320px;
+  }
+
+  .save_button {
+    flex-direction: column;
+  }
+
+  .save_button svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .dialog {
+    padding: 30px 40px;
+  }
 }
