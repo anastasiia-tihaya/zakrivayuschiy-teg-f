@@ -19,21 +19,22 @@
   }
 
   to {
-    transform: translateX(50%);
+    transform: translateX(20%);
   }
 }
+/*Я не нащла значение в макете, подскажи, пожалуйста*/
 
 @keyframes like-zoom {
   0% {
-    scale: 1;
+    scale: 0.5;
   }
 
   95% {
-    scale: 1.5;
+    scale: 1;
   }
 
   100% {
-    scale: 1;
+    scale: 1.5;
   }
 }
 
