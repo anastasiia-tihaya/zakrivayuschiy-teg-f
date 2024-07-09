@@ -1,40 +1,55 @@
 /* -------------ОБЩИЕ СТИЛИ----------- */
-.page, .header, 
-.header__logo, .theme-menu__list,
-.main, .content,
-.text-content, .container-button,
-.footer, .heart-button,
-.button, .dialog__container,
+.page,
+.header,
+.header__logo,
+.theme-menu__list,
+.main,
+.content,
+.text-content,
+.container-button,
+.footer,
+.heart-button,
+.button,
+.dialog__container,
 .dialog__warning {
   display: flex;
 }
 
-.page, .header,
-.header__logo, .theme-menu__list,
-.main, .content,
-.text-content, .dialog__container {
+.page,
+.header,
+.header__logo,
+.theme-menu__list,
+.main,
+.content,
+.text-content,
+.dialog__container {
   flex-direction: column;
 }
 
-.button:focus-visible, .header__title:focus,
-.theme-menu__button:focus-within, .heart-button:focus {
+.button:focus-visible,
+.header__title:focus,
+.theme-menu__button:focus-within,
+.heart-button:focus {
   outline: none;
 }
 
- .header, /*.post,
-.post__title, .post__cover,.content, */
- .heart-button::before,
-.button, .dialog {
+.header,
+.button,
+.dialog {
   border: 2px solid var(--themes-main-color);
 }
 
-.post__cover, .theme-menu__button,
-.heart-button, .button {
+.post__cover,
+.theme-menu__button,
+.heart-button,
+.button {
   position: relative;
 }
 
-.theme-menu__button, .watermark,
-.button__text, .dialog__warning {
+.theme-menu__button,
+.watermark,
+.button__text,
+.dialog__warning {
   font-size: 14px;
 }
 
@@ -180,7 +195,7 @@
   font-family: var(--font-accent);
   font-weight: 400;
   text-shadow: 0 0 1px var(--themes-backgroud-color);
-  mix-blend-mode:normal;
+  mix-blend-mode: hard-light;
 }
 
 
@@ -206,8 +221,6 @@
   justify-content: end;
   gap: 6px;
 }
-
-/* utils */
 
 .heart-button {
   align-items: end;
@@ -320,10 +333,11 @@ dialog::backdrop {
 }
 
 .dialog {
-  /* inline-size: calc(100vw * (352 / 1440)); */
-  inline-size: 100vw;
+  inline-size: 100%;
   padding: 30px;
   background: var(--themes-backgroud-color);
+  max-inline-size: 353px;
+  min-inline-size: 341px;
 }
 
 .dialog__container {
@@ -355,6 +369,24 @@ dialog::backdrop {
   padding: 9px 17px;
   text-transform: uppercase;
 }
+
+.floopy {
+  inline-size: 21px;
+  block-size: 21px;
+  background-size: 21px 21px;
+  background-image: var(--floopy);
+}
+
+.button .floopy:hover {
+  background-image: var(--floopy-hover);
+}
+
+.dialog__windows {
+  inline-size: 39px;
+  block-size: 39px;
+  background-size: 39px 39px;
+}
+
 
 /* -----------ФИЛЬТРЫ ДЛЯ ИЗОБРАЖЕНИЙ----------- */
 
@@ -397,32 +429,16 @@ dialog::backdrop {
     transition: none;
   }
 
-  /* .button:hover svg {
-    transition: none;
-    mix-blend-mode: difference;
-    filter: invert(1);
-  } */
-
   .button:hover .button__text {
     color: var(--themes-button-text-color);
   }
-
-  /* .button:hover svg {
-    stroke: var(--themes-backgroud-color);
-  } */
 
   .button__text {
     mix-blend-mode: difference;
   }
 }
 
-@supports (
-  (
-      (text-stroke: 1px var(--themes-backgroud-color)) or
-        (-webkit-text-stroke: 1px var(--themes-backgroud-color))
-    )
-    and (mix-blend-mode: hard-light)
-) {
+@supports (((text-stroke: 1px var(--themes-backgroud-color)) or (-webkit-text-stroke: 1px var(--themes-backgroud-color))) and (mix-blend-mode: hard-light)) {
   .watermark {
     text-shadow: none;
     -webkit-text-stroke: 1px var(--themes-backgroud-color);
@@ -430,7 +446,7 @@ dialog::backdrop {
   }
 }
 
-@media (width <= 450px) {
+@media (width <=450px) {
   .page {
     inline-size: 100%;
     min-inline-size: 320px;
@@ -440,19 +456,14 @@ dialog::backdrop {
     flex-direction: column;
   }
 
-  .save_button svg {
-    inline-size: 28px;
-    height: 28px;
-  }
-
   .dialog {
     max-inline-size: 341px;
     padding: 30px 40px;
   }
-}
 
-@media (width >= 1440px) {
-  .dialog {
-    max-inline-size: 353px;
+  .floopy {
+    inline-size: 28px;
+    block-size: 28px;
+    background-size: 28px 28px;
   }
 }
