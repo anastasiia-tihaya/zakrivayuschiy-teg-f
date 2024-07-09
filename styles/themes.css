@@ -11,6 +11,8 @@
   --themes-button-text-color: #fff;
   --themes-font-weight-title: 700;
   --themes-font-weight-content: 400;
+  --floopy :url(../svg/floppy-Black.svg);
+  --floopy-hover : url(../svg/floppy-White.svg);
   --background: repeating-linear-gradient(
       90deg,
       #d3d3d3 0px 2px,
